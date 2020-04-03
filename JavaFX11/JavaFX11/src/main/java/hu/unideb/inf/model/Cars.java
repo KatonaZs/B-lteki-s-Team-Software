@@ -30,166 +30,120 @@ public class Cars implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Brand")
-    private StringProperty Brand = new SimpleStringProperty();
+    private String Brand ;
     @Column(name = "Type")
-    private StringProperty Type = new SimpleStringProperty();
+    private String Type;
     @Column(name = "Year")
     private int Year;
     @Column(name = "Motor")
-    private StringProperty Motor = new SimpleStringProperty();
+    private String Motor;
     @Column(name = "Color")
-    private StringProperty Color = new SimpleStringProperty();
+    private String Color;
     @Column(name = "ChassisNumber")
-    private StringProperty ChassisNumber = new SimpleStringProperty();
+    private String ChassisNumber;
     @Column(name = "Price")
     private int Price;
     @Column(name = "Currency")
-    private StringProperty Currency = new SimpleStringProperty();
+    private String Currency;
 
-    public Cars(String Brand,String Type,int Year,String Motor,String Color, String ChassisNumber, int Price, String Currency) 
-    {
-        this.Brand.setValue(Brand);
-        this.Type.setValue(Type);
-        this.Year = Year;
-        this.Motor.setValue(Motor);
-        this.Color.setValue(Color);
-        this.ChassisNumber.setValue(ChassisNumber);
-        this.Price = Price;
-        this.Currency.setValue(Currency);
-    }
-
-    public StringProperty BrandProperty()
-    {
+    public String getBrand() {
         return Brand;
     }
-    
-    public StringProperty TypeProperty()
-    {
+
+    public void setBrand(String Brand) {
+        this.Brand = Brand;
+    }
+
+    public String getType() {
         return Type;
     }
-    
-    
-    public StringProperty MotorProperty()
-    {
-        return Motor;
-    }
-    
-    public StringProperty ColorProperty() 
-    {
-        return Color;
-    }
-    
-    public StringProperty ChassisNumberProperty() 
-    {
-        return ChassisNumber;
-    }
-    
-    public StringProperty CurrencyProperty() 
-    {
-        return Currency;
-    }
-    
-    public String getBrand() 
-    {
-        return Brand.getValue();
+
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
-    public void setBrand(String Brand)
-    {
-        this.Brand.setValue(Brand);
-    }
-    
-    public String getType() 
-    {
-        return Type.getValue();
-    }
-
-    public void setType(String Type) 
-    {
-        this.Type.setValue(Type);
-    }
-    
-    public int getYear() 
-    {
+    public int getYear() {
         return Year;
     }
 
-    public void setYear(int Year) 
-    {
+    public void setYear(int Year) {
         this.Year = Year;
     }
-   
-    public String getMotor() 
-    {
-        return Motor.getValue();
+
+    public String getMotor() {
+        return Motor;
     }
 
-    public void setMotor(String Motor) 
-    {
-        this.Motor.setValue(Motor);
-    }
-    
-    public String getColor() 
-    {
-        return Color.getValue();
+    public void setMotor(String Motor) {
+        this.Motor = Motor;
     }
 
-    public void setColor(String Color) 
-    {
-        this.Color.setValue(Color);
-    }
-       
-    public String getChassisNumber() 
-    {
-        return ChassisNumber.getValue();
+    public String getColor() {
+        return Color;
     }
 
-    public void setChassisNumber(String ChassisNumber) 
-    {
-        this.ChassisNumber.setValue(ChassisNumber);
+    public void setColor(String Color) {
+        this.Color = Color;
     }
 
-    public int getPrice()
-    {
+    public String getChassisNumber() {
+        return ChassisNumber;
+    }
+
+    public void setChassisNumber(String ChassisNumber) {
+        this.ChassisNumber = ChassisNumber;
+    }
+
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(int Price)
-    {
+    public void setPrice(int Price) {
         this.Price = Price;
     }
-    
-    public String getCurrency() 
-    {
-        return Currency.getValue();
+
+    public String getCurrency() {
+        return Currency;
     }
 
-    public void setCurrency(String Currency) 
-    {
-        this.Currency.setValue(Currency);
+    public void setCurrency(String Currency) {
+        this.Currency = Currency;
     }
+
+    public Cars(String Brand, String Type, int Year, String Motor, String Color, String ChassisNumber, int Price, String Currency) {
+        this.Brand = Brand;
+        this.Type = Type;
+        this.Year = Year;
+        this.Motor = Motor;
+        this.Color = Color;
+        this.ChassisNumber = ChassisNumber;
+        this.Price = Price;
+        this.Currency = Currency;
+    }
+
+    
     
     private void writeObject(ObjectOutputStream s) throws IOException 
     {
-        s.writeUTF(Brand.getValue());
-        s.writeUTF(Type.getValue());
+        s.writeUTF(Brand);
+        s.writeUTF(Type);
         s.writeInt(Year);
-        s.writeUTF(Motor.getValue());
-        s.writeUTF(Color.getValue());
-        s.writeUTF(ChassisNumber.getValue());
+        s.writeUTF(Motor);
+        s.writeUTF(Color);
+        s.writeUTF(ChassisNumber);
         s.writeInt(Price);
-        s.writeUTF(Currency.getValue());
+        s.writeUTF(Currency);
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException
     {
-        this.Brand = new SimpleStringProperty(s.readUTF());
-        this.Type = new SimpleStringProperty(s.readUTF());
+        this.Brand = s.readUTF();
+        this.Type = s.readUTF();
         this.Year = s.readInt();
-        this.Motor = new SimpleStringProperty(s.readUTF());
-        this.Color = new SimpleStringProperty(s.readUTF());
-        this.ChassisNumber = new SimpleStringProperty(s.readUTF());
+        this.Motor = s.readUTF();
+        this.Color = s.readUTF();
+        this.ChassisNumber =s.readUTF();
         this.Price = s.readInt();
-        this.Currency = new SimpleStringProperty(s.readUTF());
+        this.Currency = s.readUTF();
     }
 }

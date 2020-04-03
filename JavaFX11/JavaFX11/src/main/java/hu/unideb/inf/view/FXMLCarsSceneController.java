@@ -5,6 +5,7 @@
  */
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.hibernate.util.HibernateUtil;
 import hu.unideb.inf.model.Model;
 import hu.unideb.inf.model.Cars;
 import java.io.FileInputStream;
@@ -23,6 +24,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  * FXML Controller class
@@ -170,7 +173,22 @@ public class FXMLCarsSceneController implements Initializable {
             model.getCar().setChassisNumber(ChassisTextTitle.getText());
             model.getCar().setColor(ColorTextTitle.getText());
             model.getCar().setPrice(Integer.parseInt(PriceTextTitle.getText()));
-        
+            Cars car = new Cars(BrandTextTitle.getText(),TypeTextTitle.getText(),Integer.parseInt(YearTextTitle.getText()),MotorTextTitle.getText(),ColorTextTitle.getText(),ChassisTextTitle.getText(),Integer.parseInt(PriceTextTitle.getText()),CurrencyChoiceBox.getValue());
+            Transaction transaction = null;
+            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save the student objects
+            session.save(car);
+            // commit transaction
+            transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+            
             try (FileOutputStream fos = new FileOutputStream("car.ser",true);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);) 
             {
