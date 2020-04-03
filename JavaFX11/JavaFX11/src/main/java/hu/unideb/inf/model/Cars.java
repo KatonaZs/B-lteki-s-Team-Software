@@ -12,21 +12,38 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author hallgato
  */
+@Entity
+@Table(name = "cars")
 public class Cars implements Serializable 
 {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Brand")
     private StringProperty Brand = new SimpleStringProperty();
+    @Column(name = "Type")
     private StringProperty Type = new SimpleStringProperty();
+    @Column(name = "Year")
     private int Year;
+    @Column(name = "Motor")
     private StringProperty Motor = new SimpleStringProperty();
+    @Column(name = "Color")
     private StringProperty Color = new SimpleStringProperty();
+    @Column(name = "ChassisNumber")
     private StringProperty ChassisNumber = new SimpleStringProperty();
+    @Column(name = "Price")
     private int Price;
+    @Column(name = "Currency")
     private StringProperty Currency = new SimpleStringProperty();
 
     public Cars(String Brand,String Type,int Year,String Motor,String Color, String ChassisNumber, int Price, String Currency) 
