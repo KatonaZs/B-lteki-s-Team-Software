@@ -29,6 +29,8 @@ public class Cars implements Serializable
 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "id")
+    private int id;
     @Column(name = "Brand")
     private String Brand ;
     @Column(name = "Type")
@@ -46,6 +48,14 @@ public class Cars implements Serializable
     @Column(name = "Currency")
     private String Currency;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getBrand() {
         return Brand;
     }
