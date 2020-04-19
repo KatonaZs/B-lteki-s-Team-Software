@@ -5,6 +5,7 @@ import hu.unideb.inf.model.Cars;
 import hu.unideb.inf.model.Model;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -32,13 +33,19 @@ import org.hibernate.Transaction;
     }
     
     ObservableList<String> CurrencyList = FXCollections.observableArrayList("HUF", "EUR", "USD", "GBP");
-    ObservableList<String> CarsList = FXCollections.observableArrayList("Kérem válasszon ki egy autót a következő listából.--","Mercike");
+ 
     @FXML
     void eladasfuls() {
-    Transaction transaction = null;
-     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+     List<String> item = new ArrayList<>();
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
         List<Cars> carss = session.createQuery("from Cars", Cars.class).list();
-      } catch (Exception e) {
+        for(int i=0;i<carss.size();i++){
+           item.add("Márka: "+carss.get(i).getBrand()+" Típus: "+carss.get(i).getType()+" Szín: "+carss.get(i).getColor()+" Rendszám: "+carss.get(i).getLicenseNumber());
+        }
+        ObservableList<String>items=FXCollections.observableArrayList(item);
+        SellCarChoiceBox.setItems(items);
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -293,6 +300,6 @@ import org.hibernate.Transaction;
         SellPriceCurrencyChoiceBox.setValue("GBP");
         SellPriceCurrencyChoiceBox.setItems(CurrencyList);
         SellCarChoiceBox.setValue("Kérem válasszon ki egy autót a következő listából.--");
-        SellCarChoiceBox.setItems(CarsList);
+        
     }
 }
