@@ -30,6 +30,8 @@ public class Cars implements Serializable
     @Id
     @Column(name = "id")
     private int id;
+
+    
     @Column(name = "Brand")
     private String Brand ;
     @Column(name = "Type")
@@ -49,6 +51,9 @@ public class Cars implements Serializable
     @Column(name = "Registration_Number")
     private String LicenseNumber;
 
+    public Cars() {
+    }
+    
     public int getId() {
         return id;
     }

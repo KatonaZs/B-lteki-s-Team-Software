@@ -1,9 +1,11 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.hibernate.util.HibernateUtil;
+import hu.unideb.inf.model.Cars;
 import hu.unideb.inf.model.Model;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +35,15 @@ import org.hibernate.Transaction;
     ObservableList<String> CarsList = FXCollections.observableArrayList("Kérem válasszon ki egy autót a következő listából.--","Mercike");
     @FXML
     void eladasfuls() {
-
+    Transaction transaction = null;
+     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        List<Cars> carss = session.createQuery("from Cars", Cars.class).list();
+      } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
     
     @FXML
