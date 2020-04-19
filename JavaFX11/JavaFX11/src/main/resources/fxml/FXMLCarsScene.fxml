@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLCarsSceneController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+    
+</AnchorPane>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Bevitel">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane alignment="CENTER" layoutX="26.0" layoutY="9.0" prefHeight="350.0" prefWidth="547.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.2000244140625" minWidth="10.0" prefWidth="86.40001220703125" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.39999999999998" minWidth="10.0" prefWidth="138.999951171875" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.999951171875" minWidth="10.0" prefWidth="15.000048828124989" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.999951171875" minWidth="10.0" prefWidth="104.59995117187503" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="147.000048828125" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="184.7999877929687" minWidth="10.0" prefWidth="58.600012207031284" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text fx:id="BrandTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Márka" wrappingWidth="77.12298583984375" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="TypeTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Típus" wrappingWidth="77.12298583984375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="YearTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Évjárat" wrappingWidth="75.52298021316528" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="ChassisTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Alváz szám" wrappingWidth="98.7230224609375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="ColorTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Szín" wrappingWidth="98.7230224609375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="PriceTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Ár" wrappingWidth="97.12298583984375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="MotorTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" wrappingWidth="77.92303466796875" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                     <Text fx:id="LicenseTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Rendszám" wrappingWidth="96.04925537109375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="BrandTextTitle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="TypeTextTitle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="YearTextTitle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="MotorTextTitle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="LicenseNumberTextTitle" GridPane.columnIndex="4" />
+                                    <TextField fx:id="ChassisTextTitle" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <TextField fx:id="ColorTextTitle" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <TextField fx:id="PriceTextTitle" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="CurrencyChoiceBox" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" onAction="#HandleUploadButtonPushed" text="Feltöltés" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" onAction="#HandleCancleButtonPushed" text="Mégse" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab onSelectionChanged="#eladasfuls" text="Eladás">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="368.0" prefWidth="600.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="127.2" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.800048828125" minWidth="10.0" prefWidth="473.6000000000001" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="125.6" minHeight="10.0" prefHeight="125.6" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="156.8" minHeight="10.0" prefHeight="45.80000152587891" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="219.7999755859375" minHeight="10.0" prefHeight="56.999981689453136" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="219.7999755859375" minHeight="10.0" prefHeight="61.000018310546864" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="219.7999755859375" minHeight="10.0" prefHeight="85.60001220703123" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <ChoiceBox fx:id="SellCarChoiceBox" prefHeight="26.0" prefWidth="430.0" GridPane.columnIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Autó kiválasztása:" textAlignment="CENTER" wrappingWidth="150.537109375" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eladási ára:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <GridPane prefHeight="95.0" prefWidth="474.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.20001220703125" minWidth="10.0" prefWidth="168.79998779296875" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.8000122070313" minWidth="10.0" prefWidth="304.8000122070313" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="38.8" minHeight="10.0" prefHeight="20.200018310546874" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="SellPriceTextField" prefHeight="26.0" prefWidth="309.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <ChoiceBox fx:id="SellPriceCurrencyChoiceBox" prefHeight="26.0" prefWidth="64.0" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eladó neve:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="SellerNameTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="254.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dátum:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="SellDateTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#HandleSellButtonPushed" text="Eladás" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Button mnemonicParsing="false" onAction="#HandleSellCancelButtonPushed" text="Mégse" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
