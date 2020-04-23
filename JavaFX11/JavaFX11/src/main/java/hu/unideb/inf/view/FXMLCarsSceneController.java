@@ -49,6 +49,9 @@ import org.hibernate.Transaction;
     private TextField MotorTextTitle;
 
     @FXML
+    private TextField LicenseNumberTextTitle;
+
+    @FXML
     private TextField ChassisTextTitle;
 
     @FXML
@@ -56,31 +59,58 @@ import org.hibernate.Transaction;
 
     @FXML
     private TextField PriceTextTitle;
+
+    @FXML
+    private ChoiceBox<String> BuyCurrencyChoiceBox;
     
     @FXML
-    private TextField LicenseNumberTextTitle;
-    
-    @FXML
-    private ChoiceBox<String> CurrencyChoiceBox;
-    
-    @FXML
-    private ChoiceBox<String> SellPriceCurrencyChoiceBox;
-    
-    @FXML
-    private ChoiceBox<String> SellCarChoiceBox;
+    private ChoiceBox<String> EditCurrencyChoiceBox;
 
     @FXML
     private TextField SellPriceTextField;
+
+    @FXML
+    private ChoiceBox<String> SellPriceCurrencyChoiceBox;
 
     @FXML
     private TextField SellerNameTextField;
 
     @FXML
     private TextField SellDateTextField;
+
+    @FXML
+    private ChoiceBox<String> EditCarChoiceBox;
+    
+    @FXML
+    private ChoiceBox<String> SellCarChoiceBox;
+
+    @FXML
+    private TextField SetBrandText;
+
+    @FXML
+    private TextField SetTypeText;
+
+    @FXML
+    private TextField SetYearText;
+
+    @FXML
+    private TextField SetMotorText;
+
+    @FXML
+    private TextField SetLicenseNumberText;
+
+    @FXML
+    private TextField SetChassisNumberText;
+
+    @FXML
+    private TextField SetColorText;
+
+    @FXML
+    private TextField SetPriceText;
     
     ObservableList<String> items;
     Transaction transaction = null;
-    void SellChoiceBoxUpdate()
+    void ChoiceBoxesUpdate()
     {
         List<String> item = new ArrayList<>();
         item.add("-- Kérem válasszon ki egy autót a következő listából. --");
@@ -93,6 +123,7 @@ import org.hibernate.Transaction;
          }
         items=FXCollections.observableArrayList(item);
         SellCarChoiceBox.setItems(items);
+        EditCarChoiceBox.setItems(items);
         } 
         catch (Exception e) 
         {
@@ -102,6 +133,8 @@ import org.hibernate.Transaction;
             }
             e.printStackTrace();
         }
+        SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+        EditCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
     }
  
  
@@ -222,13 +255,19 @@ import org.hibernate.Transaction;
             return false;
         }
         
+        if(!IsOnlyDig(SellPriceTextField))
+        {
+            alert.setContentText("Az eladási ár csak számot tartalmazhat");
+            return false;
+        }
+        
          return true;
      }
     
     //A beállított pénznem szerinti összeg mentés//
     void SetPriceValue()
     {     
-        switch (CurrencyChoiceBox.getValue())
+        switch (BuyCurrencyChoiceBox.getValue())
         {
             case "GBP":
                 model.getCar().setPrice(Double.parseDouble(PriceTextTitle.getText()));
@@ -247,8 +286,7 @@ import org.hibernate.Transaction;
         }
     }
     
-    //Model értékeinek beállítása és azok feltöltése az adatbázisba//
-    void SetModelAndUploadToTheDataBase()
+    void GetSellerCarFromBuyInputs()
     {
          model.getCar().setBrand(BrandTextTitle.getText());
          model.getCar().setType(TypeTextTitle.getText());
@@ -259,7 +297,13 @@ import org.hibernate.Transaction;
          SetPriceValue();
          model.getCar().setCurrency("GBP");
          model.getCar().setLicenseNumber(LicenseNumberTextTitle.getText());
-         
+    }
+    
+    //Model értékeinek beállítása és azok feltöltése az adatbázisba//
+    void SetModelAndUploadToTheDataBase()
+    {
+        
+         GetSellerCarFromBuyInputs();
          Transaction transaction = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession())
             {
@@ -277,6 +321,20 @@ import org.hibernate.Transaction;
             }
     }
     
+    
+    void ClearBuyTabInputs()
+    {
+        BrandTextTitle.clear();
+        TypeTextTitle.clear();
+        ColorTextTitle.clear();
+        MotorTextTitle.clear();
+        ChassisTextTitle.clear();
+        YearTextTitle.clear();
+        PriceTextTitle.clear();
+        LicenseNumberTextTitle.clear();
+        BuyCurrencyChoiceBox.setValue("GBP");
+    }
+    
     @FXML
     void HandleUploadButtonPushed() throws IOException
     {
@@ -287,52 +345,63 @@ import org.hibernate.Transaction;
             alert.setTitle("Siker");
             alert.setHeaderText("A feltöltés sikeresen megtörtént");
             alert.setContentText("Most már az adatbázisban szerepel!");
-            SellChoiceBoxUpdate();
+            ChoiceBoxesUpdate();
+            ClearBuyTabInputs();
         }
         alert.showAndWait();
     }
     
-    @FXML
-    void HandleSellButtonPushed()
+    void ClearSellTabInputs()
+    {
+        SellPriceTextField.clear();
+        SellerNameTextField.clear();
+        SellDateTextField.clear();
+        SellPriceCurrencyChoiceBox.setValue("GBP");
+        SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+    }
+    
+    void DeleteSelectedCarFromDataBaseonTheSellTab()
     {
         SessionFactory sessFact = HibernateUtil.getSessionFactory();
 	Session session = sessFact.getCurrentSession();
 	Transaction tr = session.beginTransaction();
         
-        String szoveg= SellCarChoiceBox.getValue();
-        int idk;
-        String idkk="";
-        int mennyi=0;
-        for(int i=0;i<szoveg.length();i++)
-        {
-            
-            if(szoveg.charAt(i)=='1' | szoveg.charAt(i)=='2' | szoveg.charAt(i)=='3' | szoveg.charAt(i)=='4'
-               | szoveg.charAt(i)=='5' | szoveg.charAt(i)=='6' | szoveg.charAt(i)=='7' | szoveg.charAt(i)=='8'
-               | szoveg.charAt(i)=='9' | szoveg.charAt(i)=='0')
+        String selectedCar= SellCarChoiceBox.getValue();
+        int car_ID;
+        String getCarIDString="";
+   
+        for(int i=0;i<selectedCar.length();i++)
+        {  
+            if(Character.isDigit(selectedCar.charAt(i)))
             {
-               idkk+=szoveg.charAt(i)+"";
-               if(szoveg.charAt(i+1)==' '){
+               getCarIDString += selectedCar.charAt(i);
+               if(selectedCar.charAt(i+1)==' ')
+               {
                    break;
-               }
-               
-               
+               }  
             }
         }
-        System.out.println(idkk);
-        idk=Integer.parseInt(idkk);
-	Cars emp = (Cars)session.load(Cars.class,idk);
+        
+        car_ID = Integer.parseInt(getCarIDString);
+	Cars emp = (Cars)session.load(Cars.class,car_ID);
 	session.delete(emp);
 		
 	tr.commit();
 	System.out.println("Data Updated");
-
-        SellChoiceBoxUpdate();
+    }
+    
+    @FXML
+    void HandleSellButtonPushed()
+    {
         Alert alert = new Alert(AlertType.INFORMATION);
         if (IsHandleSellButtonPushed(alert)) 
         {
+            DeleteSelectedCarFromDataBaseonTheSellTab();
             alert.setTitle("Siker");
             alert.setHeaderText("Az eladás sikeresen megtörtént");
             alert.setContentText("Most már törlödőtt az adatbázisból!");
+            ChoiceBoxesUpdate();
+            ClearSellTabInputs();
         }
         alert.showAndWait();
     }
@@ -340,32 +409,267 @@ import org.hibernate.Transaction;
     @FXML
     void HandleSellCancelButtonPushed() 
     {
-        SellPriceTextField.clear();
-        SellerNameTextField.clear();
-        SellDateTextField.clear();
+        ClearSellTabInputs();
     }
     
     @FXML
     void HandleCancleButtonPushed() throws IOException, ClassNotFoundException 
     {
-        BrandTextTitle.clear();
-        TypeTextTitle.clear();
-        ColorTextTitle.clear();
-        MotorTextTitle.clear();
-        ChassisTextTitle.clear();
-        YearTextTitle.clear();
-        PriceTextTitle.clear();
-        LicenseNumberTextTitle.clear();
+         ClearBuyTabInputs();
+    }
+    
+    void ClearEditTabInputs()
+    {
+       SetBrandText.clear();
+       SetTypeText.clear();
+       SetYearText.clear();
+       SetMotorText.clear();
+       SetLicenseNumberText.clear();
+       SetChassisNumberText.clear();
+       SetColorText.clear();
+       SetPriceText.clear();
+       EditCurrencyChoiceBox.setValue("GBP");
+       EditCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+    }
+    
+    @FXML
+    void HandleEditCancleButtonPushod()
+    {
+       ClearEditTabInputs();
+    }
+    
+    void GetDataToEditTextFields()
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedCar= EditCarChoiceBox.getValue();
+        int car_ID;
+        String getCarIDString="";
+   
+        for(int i=0;i<selectedCar.length();i++)
+        {  
+            if(Character.isDigit(selectedCar.charAt(i)))
+            {
+               getCarIDString += selectedCar.charAt(i);
+               if(selectedCar.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        car_ID = Integer.parseInt(getCarIDString);
+	Cars emp = (Cars)session.load(Cars.class,car_ID);
+		
+        System.out.println(emp.getLicenseNumber());
+	System.out.println("The data has arrive for edit");
+        SetBrandText.setText(emp.getBrand());
+        SetTypeText.setText(emp.getType());
+        SetYearText.setText (String.valueOf(emp.getYear()));
+        SetMotorText.setText(emp.getMotor());
+        SetLicenseNumberText.setText(emp.getLicenseNumber());
+        SetChassisNumberText.setText(emp.getChassisNumber());
+        SetColorText.setText(emp.getColor());
+        SetPriceText.setText(String.valueOf(emp.getPrice()));
+        tr.commit();
+    }
+    
+    boolean IsHandleEditAutomaticButtonPushed(Alert alert)
+    {  
+        if(EditCarChoiceBox.getValue() == "-- Kérem válasszon ki egy autót a következő listából. --")
+        {
+            System.out.println("almafa");
+            alert.setTitle("Sikertelen");
+            alert.setHeaderText("Az adatok nem kerültek betöltésre");
+            alert.setContentText("Kérem válasszon ki egy autót a listából!");
+            return false;
+        }
+        
+        return true;
+    }
+    
+     @FXML
+     void  HandleEditAutomaticButtonPushed()  throws IOException
+     { 
+        Alert alert = new Alert(AlertType.INFORMATION);
+        
+        if (IsHandleEditAutomaticButtonPushed(alert)) 
+        {
+         GetDataToEditTextFields();
+         alert.setTitle("Siker");
+         alert.setHeaderText("Az adatok sikeresen betöltésre kerültek");
+         alert.setContentText("Most szerkesztheti a bemeneteket!");
+        }
+         alert.showAndWait();
+     }
+     
+     
+    void  DeleteSelectedCarFromDataBaseonTheEditTab()
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedCar= EditCarChoiceBox.getValue();
+        int car_ID;
+        String getCarIDString="";
+   
+        for(int i=0;i<selectedCar.length();i++)
+        {  
+            if(Character.isDigit(selectedCar.charAt(i)))
+            {
+               getCarIDString += selectedCar.charAt(i);
+               if(selectedCar.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        car_ID = Integer.parseInt(getCarIDString);
+	Cars emp = (Cars)session.load(Cars.class,car_ID);
+        session.delete(emp);
+		
+	tr.commit();
+	System.out.println("Data Deleted!");
+    }
+     
+    @FXML
+    void HandleEditDeleteButtonPushed() 
+    {
+        DeleteSelectedCarFromDataBaseonTheEditTab();
+        ChoiceBoxesUpdate();
+        ClearEditTabInputs();
+    }
+    
+    Cars UpdateDataToTheDataBaseOnTheEditTab(Cars SelectedCar)
+    {
+        SelectedCar.setBrand(SetBrandText.getText());
+        SelectedCar.setChassisNumber(SetChassisNumberText.getText());
+        SelectedCar.setColor(SetColorText.getText());
+        SelectedCar.setMotor(SetMotorText.getText());
+        SelectedCar.setLicenseNumber(SetLicenseNumberText.getText());
+        SelectedCar.setPrice(Double.parseDouble(SetPriceText.getText()));
+        SelectedCar.setType(SetTypeText.getText());
+        SelectedCar.setYear(Integer.parseInt(SetYearText.getText()));
+        
+        return SelectedCar;
+    }
+    
+    void ChangeUploadedDataFromEditTab()
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedCar= EditCarChoiceBox.getValue();
+        int car_ID;
+        String getCarIDString="";
+   
+        for(int i=0;i<selectedCar.length();i++)
+        {  
+            if(Character.isDigit(selectedCar.charAt(i)))
+            {
+               getCarIDString += selectedCar.charAt(i);
+               if(selectedCar.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        car_ID = Integer.parseInt(getCarIDString);
+	Cars emp = (Cars)session.load(Cars.class,car_ID);
+        emp = UpdateDataToTheDataBaseOnTheEditTab(emp);
+        session.update(emp);
+		
+	tr.commit();
+	System.out.println("Data Changed!");
+    }
+    
+    boolean IsHandleEditSaveButtonPushed(Alert alert)
+    {
+        alert.setTitle("Hibás bemenet!");
+        alert.setHeaderText("A feltöltés során hiba történt!");
+        if(SetBrandText.getText().isBlank() || SetTypeText.getText().isBlank()
+                || SetYearText.getText().isBlank() || SetMotorText.getText().isBlank()
+                || SetChassisNumberText.getText().isBlank() || SetColorText.getText().isBlank()
+                || SetPriceText.getText().isBlank())
+        {
+            alert.setContentText("A bemenetek között nem szerepelhet üres vagy csak whitespace karaktereket tartalmazó karaktersorozat!");
+            return false;
+        }
+        else if(IsSpecialChars(SetBrandText) || IsSpecialChars(SetTypeText)
+                || IsSpecialChars(SetYearText) || IsSpecialChars(SetChassisNumberText) || IsSpecialChars(SetColorText))
+        {
+            alert.setContentText("A bementek között nem szerepelhet speciális karaktert tartalmazó karaktersorozat!");
+            return false;
+        }
+        else if(IsDig(SetBrandText) || IsDig(SetColorText))
+        {
+            alert.setContentText("A motor, márka és a szín nem tartalmazhat számjegyet!");
+            return false;
+        }
+        else if(IsLet(SetYearText) || IsLet(SetPriceText))
+        {
+            alert.setContentText("A gyártási év és az ár nem tartalmazhat betűt!");
+            return false;
+        }
+        else if(SetYearText.getText().length() != 4)
+        {
+            alert.setContentText("A gyártási év pontosan 4 darab számjegyből állhat!");
+            return false;
+        }
+        else if (SetChassisNumberText.getText().length() != 17)
+        {
+            alert.setContentText("Az alvázszám pontosan 17 karakterből állhat!");
+            return false;
+        }
+        else if (IsOnlyDig(SetChassisNumberText) || IsOnlyDig(SetTypeText))
+        {
+            alert.setContentText("Az alvázszám és a típus nem tartalmazhatnak csak számjegyeket!");
+            return false;
+        }
+        else if(EditCarChoiceBox.getValue() == "-- Kérem válasszon ki egy autót a következő listából. --")
+        {
+            System.out.println("almafa");
+            alert.setTitle("Sikertelen");
+            alert.setHeaderText("Az adatok nem kerültek betöltésre");
+            alert.setContentText("Kérem válasszon ki egy autót a listából!");
+            return false;
+        }
+        return true;
+    }
+    
+    @FXML
+    void HandleEditSaveButtonPushed()
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        
+        if (IsHandleEditSaveButtonPushed(alert)) 
+        {
+            alert.setTitle("Siker");
+            alert.setHeaderText("Az adatok sikeresen megváltoztak!");
+            alert.setContentText("Az új adat mostmár az adatbázisban szerepel!");
+            ChangeUploadedDataFromEditTab();
+            ChoiceBoxesUpdate();
+            ClearEditTabInputs();
+        }
+        
+        alert.showAndWait();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        CurrencyChoiceBox.setValue("GBP");
-        CurrencyChoiceBox.setItems(CurrencyList);
+        BuyCurrencyChoiceBox.setValue("GBP");
+        BuyCurrencyChoiceBox.setItems(CurrencyList);
         SellPriceCurrencyChoiceBox.setValue("GBP");
         SellPriceCurrencyChoiceBox.setItems(CurrencyList);
-        SellChoiceBoxUpdate();
-        SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+        EditCurrencyChoiceBox.setValue("GBP");
+        EditCurrencyChoiceBox.setItems(CurrencyList);
+        ChoiceBoxesUpdate();
     }
 }
