@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -26,6 +27,7 @@ import org.hibernate.Transaction;
  public class FXMLCarsSceneController implements Initializable {
 
     private Model model;
+    List<Cars> carss = new ArrayList<>();
 
     public void setModel(Model model) 
     {
@@ -34,25 +36,6 @@ import org.hibernate.Transaction;
     
     ObservableList<String> CurrencyList = FXCollections.observableArrayList("HUF", "EUR", "USD", "GBP");
  
-    @FXML
-    void eladasfuls() {
-     List<String> item = new ArrayList<>();
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        List<Cars> carss = session.createQuery("from Cars", Cars.class).list();
-        for(int i=0;i<carss.size();i++){
-           item.add("Márka: "+carss.get(i).getBrand()+" Típus: "+carss.get(i).getType()+" Szín: "+carss.get(i).getColor()+" Rendszám: "+carss.get(i).getLicenseNumber());
-        }
-        ObservableList<String>items=FXCollections.observableArrayList(item);
-        SellCarChoiceBox.setItems(items);
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
-    
     @FXML
     private TextField BrandTextTitle;
 
@@ -94,7 +77,33 @@ import org.hibernate.Transaction;
 
     @FXML
     private TextField SellDateTextField;
-
+    
+    ObservableList<String> items;
+    Transaction transaction = null;
+    void SellChoiceBoxUpdate()
+    {
+        List<String> item = new ArrayList<>();
+        item.add("-- Kérem válasszon ki egy autót a következő listából. --");
+        try (Session session = HibernateUtil.getSessionFactory().openSession())
+        {
+         carss = session.createQuery("from Cars", Cars.class).list();
+         for(int i=0;i<carss.size();i++)
+         {
+           item.add( " Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+  " | Rendszám: " + carss.get(i).getLicenseNumber());
+         }
+        items=FXCollections.observableArrayList(item);
+        SellCarChoiceBox.setItems(items);
+        } 
+        catch (Exception e) 
+        {
+            if (transaction != null)
+            {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+ 
  
     //A bemenet speciális karaktert tartalmaz-e//
     boolean IsSpecialChars(TextField Special)
@@ -196,6 +205,25 @@ import org.hibernate.Transaction;
         }
         return true;
     }
+       
+     boolean IsHandleSellButtonPushed(Alert alert)
+     {
+         alert.setTitle("Hiba!");
+         alert.setHeaderText("Hibás kitöltés!");
+        if(SellCarChoiceBox.getValue() == "-- Kérem válasszon ki egy autót a következő listából. --")
+        {
+            alert.setContentText("Kérem válasszon egy autót a listából!");
+            return false;
+        }
+ 
+        if(SellPriceTextField.getText().isBlank() || SellerNameTextField.getText().isBlank() || SellDateTextField.getText().isBlank())
+        {
+            alert.setContentText("A bemenetek nem lehetnek üresek!");
+            return false;
+        }
+        
+         return true;
+     }
     
     //A beállított pénznem szerinti összeg mentés//
     void SetPriceValue()
@@ -259,47 +287,76 @@ import org.hibernate.Transaction;
             alert.setTitle("Siker");
             alert.setHeaderText("A feltöltés sikeresen megtörtént");
             alert.setContentText("Most már az adatbázisban szerepel!");
+            SellChoiceBoxUpdate();
         }
         alert.showAndWait();
     }
     
-    
     @FXML
     void HandleSellButtonPushed()
     {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String szoveg= SellCarChoiceBox.getValue();
+        int idk;
+        String idkk="";
+        for(int i=0;i<szoveg.length();i++)
+        {
+            if(szoveg.charAt(i)=='I' && szoveg.charAt(i+1)=='D')
+            {
+                idkk=szoveg.charAt(i+4)+""+szoveg.charAt(i+5);
+            }
+        }
+        System.out.println(idkk);
+        idk=Integer.parseInt(idkk);
+	Cars emp = (Cars)session.load(Cars.class,idk);
+	session.delete(emp);
+		
+	tr.commit();
+	System.out.println("Data Updated");
 
+        SellChoiceBoxUpdate();
+        Alert alert = new Alert(AlertType.INFORMATION);
+        if (IsHandleSellButtonPushed(alert)) 
+        {
+            alert.setTitle("Siker");
+            alert.setHeaderText("Az eladás sikeresen megtörtént");
+            alert.setContentText("Most már törlödőtt az adatbázisból!");
+        }
+        alert.showAndWait();
     }
 
     @FXML
     void HandleSellCancelButtonPushed() 
     {
-        SellPriceTextField.setText("");
-        SellerNameTextField.setText("");
-        SellDateTextField.setText("");
+        SellPriceTextField.clear();
+        SellerNameTextField.clear();
+        SellDateTextField.clear();
     }
     
     @FXML
     void HandleCancleButtonPushed() throws IOException, ClassNotFoundException 
     {
-        BrandTextTitle.setText("");
-        TypeTextTitle.setText("");
-        ColorTextTitle.setText("");
-        MotorTextTitle.setText("");
-        ChassisTextTitle.setText("");
-        YearTextTitle.setText("");
-        PriceTextTitle.setText("");
+        BrandTextTitle.clear();
+        TypeTextTitle.clear();
+        ColorTextTitle.clear();
+        MotorTextTitle.clear();
+        ChassisTextTitle.clear();
+        YearTextTitle.clear();
+        PriceTextTitle.clear();
+        LicenseNumberTextTitle.clear();
     }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         CurrencyChoiceBox.setValue("GBP");
         CurrencyChoiceBox.setItems(CurrencyList);
         SellPriceCurrencyChoiceBox.setValue("GBP");
         SellPriceCurrencyChoiceBox.setItems(CurrencyList);
-        SellCarChoiceBox.setValue("Kérem válasszon ki egy autót a következő listából.--");
-        
+        SellChoiceBoxUpdate();
+        SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
     }
 }
