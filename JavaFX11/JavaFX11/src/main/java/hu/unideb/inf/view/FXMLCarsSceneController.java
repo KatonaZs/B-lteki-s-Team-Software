@@ -302,11 +302,20 @@ import org.hibernate.Transaction;
         String szoveg= SellCarChoiceBox.getValue();
         int idk;
         String idkk="";
+        int mennyi=0;
         for(int i=0;i<szoveg.length();i++)
         {
-            if(szoveg.charAt(i)=='I' && szoveg.charAt(i+1)=='D')
+            
+            if(szoveg.charAt(i)=='1' | szoveg.charAt(i)=='2' | szoveg.charAt(i)=='3' | szoveg.charAt(i)=='4'
+               | szoveg.charAt(i)=='5' | szoveg.charAt(i)=='6' | szoveg.charAt(i)=='7' | szoveg.charAt(i)=='8'
+               | szoveg.charAt(i)=='9' | szoveg.charAt(i)=='0')
             {
-                idkk=szoveg.charAt(i+4)+""+szoveg.charAt(i+5);
+               idkk+=szoveg.charAt(i)+"";
+               if(szoveg.charAt(i+1)==' '){
+                   break;
+               }
+               
+               
             }
         }
         System.out.println(idkk);
