@@ -89,7 +89,7 @@ import org.hibernate.Transaction;
          carss = session.createQuery("from Cars", Cars.class).list();
          for(int i=0;i<carss.size();i++)
          {
-           item.add( " Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+  " | Rendszám: " + carss.get(i).getLicenseNumber());
+           item.add("ID: "+carss.get(i).getId() +" | Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+  " | Rendszám: " + carss.get(i).getLicenseNumber());
          }
         items=FXCollections.observableArrayList(item);
         SellCarChoiceBox.setItems(items);
