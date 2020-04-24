@@ -15,6 +15,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLCarsScene.fxml"));
         Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("/fxml/background.css");
         stage.setTitle("Belteki's Car KFT.");
         stage.setScene(scene);
         
