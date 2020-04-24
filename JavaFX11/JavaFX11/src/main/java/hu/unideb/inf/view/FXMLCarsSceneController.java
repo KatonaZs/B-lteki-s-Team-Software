@@ -143,7 +143,7 @@ import org.hibernate.Transaction;
          workerss = session.createQuery("from Workers", Workers.class).list();
          for(int i = 0; i < carss.size(); i++)
          {
-           itemCars.add("ID: " + carss.get(i).getId() +" | Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+ " | Lista ár: " + carss.get(i).getPrice() + " | Rendszám: " + carss.get(i).getLicenseNumber());
+           itemCars.add("ID: " + carss.get(i).getId() +" | Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+ " | Lista ár: " + carss.get(i).getPrice() + " GBP | Rendszám: " + carss.get(i).getLicenseNumber());
          }
          for(int i = 0; i < workerss.size(); i++)
          {
@@ -310,13 +310,13 @@ import org.hibernate.Transaction;
                 model.getCar().setPrice(Double.parseDouble(PriceTextTitle.getText()) * 1.2);
                 break;
             case "HUF":
-                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText()) / 400.0)) * 1.2);
+                model.getCar().setPrice(Math.round((Double.parseDouble(PriceTextTitle.getText()) / 400.0) * 1.2));
                 break;
             case "EUR":
-                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText())/1.2) ) * 1.2);
+                model.getCar().setPrice(Math.round((Double.parseDouble(PriceTextTitle.getText()) / 1.2) * 1.2));
                 break;
             case "USD":
-                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText())/1.25)) * 1.2);
+                model.getCar().setPrice(Math.round((Double.parseDouble(PriceTextTitle.getText()) / 1.25) * 1.2));
                 break;
             default:
                 break;
@@ -422,12 +422,29 @@ import org.hibernate.Transaction;
         int count = emp.getCarCount() + 1;
 	emp.setCarCount(count);
         SellPrice = SellPrice - BuyPrice;
-        double Profit = emp.getProfit() + SellPrice;
+        double Profit = Math.round(emp.getProfit() + SellPrice);
         emp.setProfit(Profit);
         session.update(emp);
 	tr.commit();
     }
     
+    double GetSellPriceValue()
+    {     
+        switch (SellPriceCurrencyChoiceBox.getValue())
+        {
+            case "GBP":
+                return Double.parseDouble(SellPriceTextField.getText());
+            case "HUF":
+                return Math.round(Double.parseDouble(SellPriceTextField.getText()) / 400.0);
+            case "EUR":
+                return Math.round(Double.parseDouble(SellPriceTextField.getText())/1.2);
+            case "USD":
+                return Math.round(Double.parseDouble(SellPriceTextField.getText())/1.25);
+            default:
+                break;
+        }
+        return 0;
+    }
     void DeleteSelectedCarFromDataBaseonTheSellTab()
     {
         SessionFactory sessFact = HibernateUtil.getSessionFactory();
@@ -455,7 +472,8 @@ import org.hibernate.Transaction;
         double BuyPrice = emp.getPrice() / 1.2;
 	session.delete(emp);
 	tr.commit();
-        AddTheProfitAndTheCarToTheWorkers(Double.parseDouble(SellPriceTextField.getText()), BuyPrice);
+        double SellPrice = GetSellPriceValue();
+        AddTheProfitAndTheCarToTheWorkers(SellPrice, BuyPrice);
 	System.out.println("Data Updated");
     }
     

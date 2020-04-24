@@ -484,7 +484,7 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Termelt profit" wrappingWidth="115.4323959350586" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Össz Profit" wrappingWidth="115.4323959350586" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
