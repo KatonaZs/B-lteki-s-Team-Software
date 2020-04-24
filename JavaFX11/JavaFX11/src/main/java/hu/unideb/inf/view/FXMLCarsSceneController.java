@@ -3,6 +3,7 @@ package hu.unideb.inf.view;
 import hu.unideb.inf.hibernate.util.HibernateUtil;
 import hu.unideb.inf.model.Cars;
 import hu.unideb.inf.model.Model;
+import hu.unideb.inf.model.Workers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import org.hibernate.Transaction;
 
     private Model model;
     List<Cars> carss = new ArrayList<>();
+    List<Workers> workerss = new ArrayList<>();
 
     public void setModel(Model model) 
     {
@@ -73,7 +75,7 @@ import org.hibernate.Transaction;
     private ChoiceBox<String> SellPriceCurrencyChoiceBox;
 
     @FXML
-    private TextField SellerNameTextField;
+    private ChoiceBox<String> SellerNameChoiceBox;
 
     @FXML
     private TextField SellDateTextField;
@@ -108,22 +110,51 @@ import org.hibernate.Transaction;
     @FXML
     private TextField SetPriceText;
     
-    ObservableList<String> items;
+      @FXML
+    private TextField WorkerNameTextField;
+
+    @FXML
+    private TextField WorkerBDTextField;
+
+    @FXML
+    private TextField WorkerINTextField;
+
+    @FXML
+    private ChoiceBox<String> WorkersChoiceBox;
+
+    @FXML
+    private TextField WorkerCarCountTextField;
+
+    @FXML
+    private TextField WorkerProfitTextField;
+    
+    ObservableList<String> itemCarss;
+    ObservableList<String> itemWorkerss;
     Transaction transaction = null;
     void ChoiceBoxesUpdate()
     {
-        List<String> item = new ArrayList<>();
-        item.add("-- Kérem válasszon ki egy autót a következő listából. --");
+        List<String> itemCars = new ArrayList<>();
+        List<String> itemWorkers = new ArrayList<>();
+        itemCars.add("-- Kérem válasszon ki egy autót a következő listából. --");
+        itemWorkers.add("-- Kérem válasszon ki egy dolgozót a következő listából. --");
         try (Session session = HibernateUtil.getSessionFactory().openSession())
         {
          carss = session.createQuery("from Cars", Cars.class).list();
-         for(int i=0;i<carss.size();i++)
+         workerss = session.createQuery("from Workers", Workers.class).list();
+         for(int i = 0; i < carss.size(); i++)
          {
-           item.add("ID: "+carss.get(i).getId() +" | Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+  " | Rendszám: " + carss.get(i).getLicenseNumber());
+           itemCars.add("ID: " + carss.get(i).getId() +" | Márka: " + carss.get(i).getBrand() + " | Típus: " + carss.get(i).getType() + " | Szín: " + carss.get(i).getColor()+ " | Lista ár: " + carss.get(i).getPrice() + " | Rendszám: " + carss.get(i).getLicenseNumber());
          }
-        items=FXCollections.observableArrayList(item);
-        SellCarChoiceBox.setItems(items);
-        EditCarChoiceBox.setItems(items);
+         for(int i = 0; i < workerss.size(); i++)
+         {
+           itemWorkers.add("ID: " + workerss.get(i).getId() + " | Név: " +  workerss.get(i).getName() + " | I.Sz.: " + workerss.get(i).getIN());
+         }
+        itemCarss = FXCollections.observableArrayList(itemCars);
+        itemWorkerss = FXCollections.observableArrayList(itemWorkers);
+        SellCarChoiceBox.setItems(itemCarss);
+        EditCarChoiceBox.setItems(itemCarss);
+        WorkersChoiceBox.setItems(itemWorkerss);
+        SellerNameChoiceBox.setItems(itemWorkerss);
         } 
         catch (Exception e) 
         {
@@ -135,6 +166,8 @@ import org.hibernate.Transaction;
         }
         SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
         EditCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+        WorkersChoiceBox.setValue("-- Kérem válasszon ki egy dolgozót a következő listából. --");
+        SellerNameChoiceBox.setValue("-- Kérem válasszon ki egy dolgozót a következő listából. --");
     }
  
  
@@ -248,8 +281,12 @@ import org.hibernate.Transaction;
             alert.setContentText("Kérem válasszon egy autót a listából!");
             return false;
         }
- 
-        if(SellPriceTextField.getText().isBlank() || SellerNameTextField.getText().isBlank() || SellDateTextField.getText().isBlank())
+        if(SellerNameChoiceBox.getValue() == "-- Kérem válasszon ki egy dolgozót a következő listából. --")
+        {
+            alert.setContentText("Kérem válasszon egy dolgozót a listából!");
+            return false;
+        }
+        if(SellPriceTextField.getText().isBlank() || SellDateTextField.getText().isBlank())
         {
             alert.setContentText("A bemenetek nem lehetnek üresek!");
             return false;
@@ -270,16 +307,16 @@ import org.hibernate.Transaction;
         switch (BuyCurrencyChoiceBox.getValue())
         {
             case "GBP":
-                model.getCar().setPrice(Double.parseDouble(PriceTextTitle.getText()));
+                model.getCar().setPrice(Double.parseDouble(PriceTextTitle.getText()) * 1.2);
                 break;
             case "HUF":
-                model.getCar().setPrice(Math.round(Double.parseDouble(PriceTextTitle.getText()) / 400.0));
+                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText()) / 400.0)) * 1.2);
                 break;
             case "EUR":
-                model.getCar().setPrice(Math.round(Double.parseDouble(PriceTextTitle.getText())/1.2));
+                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText())/1.2) ) * 1.2);
                 break;
             case "USD":
-                model.getCar().setPrice(Math.round(Double.parseDouble(PriceTextTitle.getText())/1.25));
+                model.getCar().setPrice((Math.round(Double.parseDouble(PriceTextTitle.getText())/1.25)) * 1.2);
                 break;
             default:
                 break;
@@ -302,7 +339,6 @@ import org.hibernate.Transaction;
     //Model értékeinek beállítása és azok feltöltése az adatbázisba//
     void SetModelAndUploadToTheDataBase()
     {
-        
          GetSellerCarFromBuyInputs();
          Transaction transaction = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession())
@@ -354,10 +390,42 @@ import org.hibernate.Transaction;
     void ClearSellTabInputs()
     {
         SellPriceTextField.clear();
-        SellerNameTextField.clear();
         SellDateTextField.clear();
         SellPriceCurrencyChoiceBox.setValue("GBP");
         SellCarChoiceBox.setValue("-- Kérem válasszon ki egy autót a következő listából. --");
+    }
+    
+    void AddTheProfitAndTheCarToTheWorkers(double SellPrice, double BuyPrice)
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedWorker= SellerNameChoiceBox.getValue();
+        int worker_ID;
+        String getWorkerIDString = "";
+   
+        for(int i=0;i<selectedWorker.length();i++)
+        {  
+            if(Character.isDigit(selectedWorker.charAt(i)))
+            {
+               getWorkerIDString += selectedWorker.charAt(i);
+               if(selectedWorker.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        worker_ID = Integer.parseInt(getWorkerIDString);
+	Workers emp = (Workers)session.load(Workers.class,worker_ID);
+        int count = emp.getCarCount() + 1;
+	emp.setCarCount(count);
+        SellPrice = SellPrice - BuyPrice;
+        double Profit = emp.getProfit() + SellPrice;
+        emp.setProfit(Profit);
+        session.update(emp);
+	tr.commit();
     }
     
     void DeleteSelectedCarFromDataBaseonTheSellTab()
@@ -384,9 +452,10 @@ import org.hibernate.Transaction;
         
         car_ID = Integer.parseInt(getCarIDString);
 	Cars emp = (Cars)session.load(Cars.class,car_ID);
+        double BuyPrice = emp.getPrice() / 1.2;
 	session.delete(emp);
-		
 	tr.commit();
+        AddTheProfitAndTheCarToTheWorkers(Double.parseDouble(SellPriceTextField.getText()), BuyPrice);
 	System.out.println("Data Updated");
     }
     
@@ -659,6 +728,218 @@ import org.hibernate.Transaction;
         }
         
         alert.showAndWait();
+    }
+    
+    
+     void GetWorkerFromCompanyTab()
+     {
+         model.getWorker().setName(WorkerNameTextField.getText());
+         model.getWorker().setBdate(WorkerBDTextField.getText());
+         model.getWorker().setCarCount(0);
+         model.getWorker().setProfit(0);
+         model.getWorker().setIN(WorkerINTextField.getText());
+         Transaction transaction = null;
+            try (Session session = HibernateUtil.getSessionFactory().openSession())
+            {
+            transaction = session.beginTransaction();
+            session.save(model.getWorker());
+            transaction.commit();
+            } 
+            catch (Exception e)
+            {
+                if (transaction != null)
+                {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+     }
+     
+     boolean BadDateFormatum(String Text)
+     {
+         if(Text.length() != 10)
+         return true;
+         
+         if(Text.charAt(4) != '.')
+         return true;
+         
+         if(Text.charAt(7) != '.')
+         return true;
+         
+         for(int i = 0; i < 4; i++)
+         {
+             if(!(Character.isDigit(Text.charAt(i))))
+                 return true;
+         }
+         
+         for(int i = 5; i < 7; i++)
+         {
+             if(!(Character.isDigit(Text.charAt(i))))
+                 return true;
+         }
+         
+         for(int i = 8; i < 10; i++)
+         {
+             if(!(Character.isDigit(Text.charAt(i))))
+                 return true;
+         }
+         
+         return false;
+     }
+     
+     boolean IsHandleApplyButtonPushed(Alert alert)
+     {
+        alert.setTitle("Hibás bemenet!");
+        alert.setHeaderText("A feltöltés során hiba történt!");
+        if(WorkerNameTextField.getText().isBlank() || WorkerBDTextField.getText().isBlank()||WorkerINTextField.getText().isBlank())
+        {
+            alert.setContentText("A bemenetek nem lehetnek üresek se whitespace nem megengedett!");
+            return false;
+        }
+        if(IsDig(WorkerNameTextField))
+        {
+            alert.setContentText("A név nem tartalmazhat számjegyet!");
+            return false;
+        }
+        if(BadDateFormatum(WorkerBDTextField.getText()))
+        {
+            alert.setContentText("A születési dátumnot XXXX.XX.XX formátumba kell megadni!");
+            return false;
+        }
+        
+         return true;
+     }
+     
+     void ClearApplyWorkerInputs()
+     {
+         WorkerBDTextField.clear();
+         WorkerNameTextField.clear();
+         WorkerINTextField.clear();
+     }
+     
+    @FXML
+    void WorkerApplyButtonPushed() 
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        
+        if (IsHandleApplyButtonPushed(alert)) 
+        {
+         GetWorkerFromCompanyTab();
+         ChoiceBoxesUpdate();
+         ClearApplyWorkerInputs();
+         alert.setTitle("Siker");
+         alert.setHeaderText("Az új dolgozót sikeresen felvette az adatbázisba!");
+         alert.setContentText("Most már lekérdezheti ha szeretné!");
+         ClearQuiryInputs();
+        }
+         alert.showAndWait();
+    }
+    
+    void ClearQuiryInputs()
+    {
+        WorkerProfitTextField.clear();
+        WorkerCarCountTextField.clear();
+    }
+    
+    void DeleteWorkerOnTheCompanyTab()
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedWorker= WorkersChoiceBox.getValue();
+        int worker_ID;
+        String getWorkerIDString = "";
+   
+        for(int i=0;i<selectedWorker.length();i++)
+        {  
+            if(Character.isDigit(selectedWorker.charAt(i)))
+            {
+               getWorkerIDString += selectedWorker.charAt(i);
+               if(selectedWorker.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        worker_ID = Integer.parseInt(getWorkerIDString);
+	Workers emp = (Workers)session.load(Workers.class,worker_ID);
+	session.delete(emp);
+		
+	tr.commit();
+	System.out.println("Worker Deleted!");
+    }
+    
+    @FXML
+    void DeleteSelectedWorkerButtonPushed()
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        DeleteWorkerOnTheCompanyTab();
+        ClearQuiryInputs();
+        ChoiceBoxesUpdate();  
+        alert.setTitle("Siker");
+        alert.setHeaderText("A dolgozót sikeresen törölte az adatbázisból!");
+        alert.setContentText("Adatbázis frissitésre került!");
+        alert.showAndWait();
+    }
+    
+    void GetWorkerData()
+    {
+        SessionFactory sessFact = HibernateUtil.getSessionFactory();
+	Session session = sessFact.getCurrentSession();
+	Transaction tr = session.beginTransaction();
+        
+        String selectedWorker= WorkersChoiceBox.getValue();
+        int worker_ID;
+        String getWorkerIDString = "";
+   
+        for(int i=0;i<selectedWorker.length();i++)
+        {  
+            if(Character.isDigit(selectedWorker.charAt(i)))
+            {
+               getWorkerIDString += selectedWorker.charAt(i);
+               if(selectedWorker.charAt(i+1)==' ')
+               {
+                   break;
+               }  
+            }
+        }
+        
+        worker_ID = Integer.parseInt(getWorkerIDString);
+	Workers emp = (Workers)session.load(Workers.class,worker_ID);
+	WorkerProfitTextField.setText(emp.getProfit() + " GBP");
+        WorkerCarCountTextField.setText(emp.getCarCount()+ " db");
+	tr.commit();
+    }
+    
+    boolean IsHandleGetButtonPushed(Alert alert)
+    {
+        
+        if(WorkersChoiceBox.getValue() == "-- Kérem válasszon ki egy dolgozót a következő listából. --")
+        {
+            alert.setTitle("Hiba");
+            alert.setHeaderText("Sikertelen lekérdezés!");
+            alert.setContentText("Kérem válasszon egy dolgozót!");
+            return false;
+        }
+            
+     return true;
+    }
+    
+    @FXML
+    void GetWorkerDataButtonPushed() 
+    {
+       Alert alert = new Alert(AlertType.INFORMATION);
+       ClearQuiryInputs();
+       if (IsHandleGetButtonPushed(alert)) 
+        {
+            GetWorkerData();
+            alert.setTitle("Siker");
+            alert.setHeaderText("A dolgozó adatait sikeresen lekérte!");
+            alert.setContentText("Most már az adatok a box-okban szerepelnek!");
+        }
+       alert.showAndWait();
     }
 
     @Override

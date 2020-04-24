@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .root{
-    -fx-background-color: linear-gradient(#333333, #cccccc);
+    -fx-background-color: #dddddd;
 }
 
 
@@ -55,18 +55,19 @@ and open the template in the editor.
 }
 
 .tab{
-    -fx-background-color: -fx-primary;
+    -fx-background-color: #cccccc;
     -fx-pref-width: 190;
     -fx-pref-height:40;
     -fx-font-weight: bold;
 }
 
 .tab:hover{
-    -fx-background-color: white;
+    -fx-background-color: #cccbbb;
 }
 
-.tab:selected{
-    -fx-background-color: linear-gradient(whitesmoke, #333333);
+.tab:selected
+{
+    -fx-background-color:  #dddddd;
 }
 
 .text-field{

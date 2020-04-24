@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.time.LocalDate;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -146,7 +143,7 @@ public class Cars implements Serializable
         this.LicenseNumber = LicenseNumber;
     }
     
-       private void writeObject(ObjectOutputStream s) throws IOException 
+    private void writeObject(ObjectOutputStream s) throws IOException 
     {
         s.writeUTF(Brand);
         s.writeUTF(Type);
