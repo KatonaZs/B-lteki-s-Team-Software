@@ -70,6 +70,7 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataIsSpecialChars")
+            //@DisplayName("A bemenet speciális karaktert tartalmaz-e")
     void testIsSpecialChars(String Special, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsSpecialChars(Special);
@@ -96,6 +97,7 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource(value = "testDataIsDig")
+            @DisplayName("A bemenet tartalmaz-e számot")
     void testIsDig(String Dig, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsDig(Dig);
@@ -121,6 +123,7 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataIsLet")
+            @DisplayName("Tartalmaz-e betűt")
     void testIsLet(String Let, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsLet(Let);

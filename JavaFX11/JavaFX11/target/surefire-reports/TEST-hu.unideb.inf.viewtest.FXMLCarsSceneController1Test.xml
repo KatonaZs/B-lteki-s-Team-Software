@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.198" tests="31" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.279" tests="31" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="13.0.2+8"/>
@@ -57,34 +57,34 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testIsOnlyDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.033"/>
-  <testcase name="testIsOnlyDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testIsOnlyDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.006"/>
-  <testcase name="testIsOnlyDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsDig{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
-  <testcase name="testIsLet{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testIsLet{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsLet{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
-  <testcase name="testIsLet{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testBadDateFormatum{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testBadDateFormatum{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testBadDateFormatum{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testBadDateFormatum{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
-  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.006"/>
+  <testcase name="testIsOnlyDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.032"/>
+  <testcase name="testIsOnlyDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsOnlyDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsOnlyDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.004"/>
+  <testcase name="testIsDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsDig{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsLet{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.005"/>
+  <testcase name="testIsLet{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsLet{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testIsLet{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.004"/>
+  <testcase name="testBadDateFormatum{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testBadDateFormatum{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testBadDateFormatum{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testBadDateFormatum{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.007"/>
   <testcase name="testIsHandleUploadButtonPushed{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testIsHandleUploadButtonPushed{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testIsHandleUploadButtonPushed{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testSetPriceValue{String}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
+  <testcase name="testSetPriceValue{String}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
   <testcase name="testSetPriceValue{String}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testSetPriceValue{String}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testSetPriceValue{String}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testSetPriceValue{String}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
-  <testcase name="testIsSpecialChars{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
-  <testcase name="testIsSpecialChars{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsSpecialChars{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsSpecialChars{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
   <testcase name="testIsSpecialChars{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testIsSpecialChars{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testIsSpecialChars{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
