@@ -1,4 +1,5 @@
 hu\unideb\inf\model\Cars.class
+hu\unideb\inf\viewtest\FXMLCarsSceneController1.class
 hu\unideb\inf\MainApp.class
 hu\unideb\inf\model\Model.class
 hu\unideb\inf\hibernate\util\HibernateUtil.class

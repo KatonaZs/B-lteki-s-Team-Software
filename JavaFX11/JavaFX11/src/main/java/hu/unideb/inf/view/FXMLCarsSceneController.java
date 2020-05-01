@@ -110,7 +110,7 @@ import org.hibernate.Transaction;
     @FXML
     private TextField SetPriceText;
     
-      @FXML
+    @FXML
     private TextField WorkerNameTextField;
 
     @FXML
@@ -174,7 +174,7 @@ import org.hibernate.Transaction;
     //A bemenet speciális karaktert tartalmaz-e//
     boolean IsSpecialChars(TextField Special)
     {
-        String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
+        String specialChars = "=/*!@#$%^&*()\"{}_[]|\\?/<>,.";
         if (Special.getText().endsWith("-") || Special.getText().startsWith("-")
                 || Special.getText().endsWith(" ") || Special.getText().startsWith(" "))
         {

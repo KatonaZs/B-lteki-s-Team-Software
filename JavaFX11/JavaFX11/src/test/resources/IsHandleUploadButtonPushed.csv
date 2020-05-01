@@ -1,0 +1,6 @@
+Brand:Type:Year:Motor:Color:Chassis_Number:Price:Currency:Registration_Number,expResult
+BMW:M3:2000:Benzin:Piros:123gd678901234das:10000:GBP:GHB-666,true
+BMW:M3:200:Benzin:Piros:123gd678901234das:10000:GBP:GHB-666,false
+BMW:M3:2000:Benzin:Pi1ros:123gd678901234das:10000:GBP:GHB-666,false
+BMW:M3:2000:Benzin:Piros:12345678901234567:10000:GBP:GHB-666,false
+BMW:M3:2000:Benzin:Piros:123gd678901234das:100s00:GBP:GHB-666,false
