@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @author kodis
  */
-@DisplayName("Belteki's Car KFT. applikáció teszt")
+@DisplayName("Belteki's Car KFT teszt")
 public class FXMLCarsSceneController1Test {
     
     private Model model;
