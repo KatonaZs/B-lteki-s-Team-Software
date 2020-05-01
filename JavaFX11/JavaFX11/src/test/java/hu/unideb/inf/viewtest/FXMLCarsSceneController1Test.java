@@ -70,7 +70,7 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataIsSpecialChars")
-            //@DisplayName("A bemenet speciális karaktert tartalmaz-e")
+            @DisplayName("A bemenet speciális karaktert tartalmaz-e")
     void testIsSpecialChars(String Special, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsSpecialChars(Special);
