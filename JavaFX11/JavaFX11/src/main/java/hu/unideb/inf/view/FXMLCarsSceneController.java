@@ -22,7 +22,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
-  @author hallgato
+  @author hallgato 
  **/
 
  public class FXMLCarsSceneController implements Initializable {
