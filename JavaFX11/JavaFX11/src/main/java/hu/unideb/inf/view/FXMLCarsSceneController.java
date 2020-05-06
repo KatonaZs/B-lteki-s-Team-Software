@@ -264,9 +264,9 @@ import org.hibernate.Transaction;
         {
             alert.setContentText("Az alvázszám pontosan 17 karakterből állhat!");
             return false;
-        }else if (IsOnlyDig(ChassisTextTitle) || IsOnlyDig(TypeTextTitle))
+        }else if (IsOnlyDig(ChassisTextTitle))
         {
-            alert.setContentText("Az alvázszám és a típus nem tartalmazhatnak csak számjegyeket!");
+            alert.setContentText("Az alvázszám nem tartalmazhat csak számjegyeket!");
             return false;
         }
         return true;

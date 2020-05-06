@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @author kodis
  */
-@DisplayName("Belteki's Car KFT teszt")
+@DisplayName("Belteki's Car KFT. applikáció teszt")
 public class FXMLCarsSceneController1Test {
     
     private Model model;
@@ -70,7 +70,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataIsSpecialChars")
-            @DisplayName("A bemenet speciális karaktert tartalmaz-e")
     void testIsSpecialChars(String Special, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsSpecialChars(Special);
@@ -97,7 +96,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource(value = "testDataIsDig")
-            @DisplayName("A bemenet tartalmaz-e számot")
     void testIsDig(String Dig, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsDig(Dig);
@@ -123,7 +121,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataIsLet")
-            @DisplayName("Tartalmaz-e betűt")
     void testIsLet(String Let, boolean expResult) {
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.IsLet(Let);
@@ -165,7 +162,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @ValueSource(strings = {"GBP", "HUF", "EUR", "USD"})
-            @DisplayName("A beállított pénznem szerinti összeg mentés")
     void testSetPriceValue(String Currency){
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         String Price = "10000";
@@ -210,7 +206,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @MethodSource("testDataBadDateFormatum")
-            @DisplayName("Helyes-e a megadott dátum")
     void testBadDateFormatum(String Date, boolean expResult){
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result = instance.BadDateFormatum(Date);
@@ -228,7 +223,6 @@ public class FXMLCarsSceneController1Test {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/IsHandleUploadButtonPushed.csv", numLinesToSkip = 1)
-            @DisplayName("Helyesek-e a megadott beviteli adatok")
     void testIsHandleUploadButtonPushed(String Car, boolean expResult){
         FXMLCarsSceneController1 instance = new FXMLCarsSceneController1();
         boolean result;
