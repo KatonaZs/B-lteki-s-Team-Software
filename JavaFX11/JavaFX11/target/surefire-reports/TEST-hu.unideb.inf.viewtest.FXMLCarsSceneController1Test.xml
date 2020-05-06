@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.478" tests="31" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.255" tests="31" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="java.vm.version" value="11.0.6+8-LTS"/>
-    <property name="sun.boot.library.path" value="D:\Program Files\Java\jdk-11.0.6\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Katona Zsombor\Downloads\Project\B-lteki-s-Team-Software\JavaFX11\JavaFX11\JavaFX11"/>
+    <property name="java.vm.version" value="13.0.2+8"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-13.0.2\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\programming\szoftverfejlesztés\gitfolder\B-lteki-s-Team-Software\JavaFX11\JavaFX11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="path.separator" value=";"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
@@ -15,82 +15,77 @@
     <property name="user.country" value="HU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Katona Zsombor\Downloads\Project\B-lteki-s-Team-Software\JavaFX11\JavaFX11\JavaFX11"/>
+    <property name="user.dir" value="D:\programming\szoftverfejlesztés\gitfolder\B-lteki-s-Team-Software\JavaFX11\JavaFX11"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
-    <property name="java.runtime.version" value="11.0.6+8-LTS"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.runtime.version" value="13.0.2+8"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\KATONA~1\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\Marci\AppData\Local\Temp\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="maven.ext.class.path" value="D:\Program Files\NetBeans-11.3\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
-    <property name="classworlds.conf" value="D:\Program Files\NetBeans-11.3\netbeans\java\maven\bin\m2.conf"/>
+    <property name="maven.ext.class.path" value="D:\programming\netbeans\NetBeans-11.3\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="D:\programming\netbeans\NetBeans-11.3\netbeans\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1250"/>
-    <property name="java.library.path" value="D:\Program Files\Java\jdk-11.0.6\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;D:\Program Files\PuTTY\;D:\Program Files\Git\cmd;C:\Users\Katona Zsombor\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-13.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\dotnet\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\Git\cmd;C:\Users\Marci\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="jdk.debug" value="release"/>
-    <property name="java.class.version" value="55.0"/>
+    <property name="java.class.version" value="57.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="runfx.args" value="-jar &quot;${project.build.directory}/${project.build.finalName}.jar&quot; "/>
     <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\Katona Zsombor"/>
-    <property name="user.timezone" value="Europe/Prague"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="user.home" value="C:\Users\Marci"/>
+    <property name="user.timezone" value="Europe/Budapest"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="java.specification.version" value="11"/>
-    <property name="user.name" value="Katona Zsombor"/>
-    <property name="java.class.path" value="D:\Program Files\NetBeans-11.3\netbeans\java\maven\boot\plexus-classworlds-2.5.2.jar"/>
-    <property name="java.vm.specification.version" value="11"/>
+    <property name="java.specification.version" value="13"/>
+    <property name="user.name" value="Marci"/>
+    <property name="java.class.path" value="D:\programming\netbeans\NetBeans-11.3\netbeans\java\maven\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="13"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Drunfx.args=-jar &quot;${project.build.directory}/${project.build.finalName}.jar&quot;  -Dmaven.ext.class.path=D:\Program Files\NetBeans-11.3\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean package org.codehaus.mojo:exec-maven-plugin:1.2.1:java"/>
-    <property name="java.home" value="D:\Program Files\Java\jdk-11.0.6"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Drunfx.args=-jar &quot;${project.build.directory}/${project.build.finalName}.jar&quot;  -Dmaven.ext.class.path=D:\programming\netbeans\NetBeans-11.3\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean package org.codehaus.mojo:exec-maven-plugin:1.2.1:java"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-13.0.2"/>
     <property name="user.language" value="hu"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="11.0.6"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="13.0.2"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="D:\Program Files\NetBeans-11.3\netbeans\java\maven"/>
+    <property name="maven.home" value="D:\programming\netbeans\NetBeans-11.3\netbeans\java\maven"/>
     <property name="file.separator" value="\"/>
     <property name="java.version.date" value="2020-01-14"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="java.vendor.version" value="18.9"/>
-    <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testIsOnlyDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.059"/>
-  <testcase name="testIsOnlyDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.008"/>
-  <testcase name="testIsOnlyDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testIsOnlyDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.009"/>
-  <testcase name="testIsDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.004"/>
-  <testcase name="testIsDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.007"/>
-  <testcase name="testIsDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.007"/>
-  <testcase name="testIsDig{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsLet{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsOnlyDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.052"/>
+  <testcase name="testIsOnlyDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsOnlyDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsOnlyDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsDig{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
+  <testcase name="testIsDig{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
+  <testcase name="testIsDig{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsDig{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsDig{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsLet{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testIsLet{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsLet{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.004"/>
-  <testcase name="testIsLet{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsLet{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsLet{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testBadDateFormatum{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testBadDateFormatum{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testBadDateFormatum{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
+  <testcase name="testBadDateFormatum{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testBadDateFormatum{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
   <testcase name="testBadDateFormatum{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.018"/>
+  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.008"/>
   <testcase name="testIsHandleUploadButtonPushed{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
   <testcase name="testIsHandleUploadButtonPushed{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
-  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.011"/>
+  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsHandleUploadButtonPushed{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
   <testcase name="testSetPriceValue{String}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
   <testcase name="testSetPriceValue{String}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
   <testcase name="testSetPriceValue{String}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
   <testcase name="testSetPriceValue{String}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
-  <testcase name="testIsSpecialChars{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsSpecialChars{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsSpecialChars{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.004"/>
-  <testcase name="testIsSpecialChars{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.003"/>
-  <testcase name="testIsSpecialChars{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.006"/>
+  <testcase name="testIsSpecialChars{String, boolean}[1]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.002"/>
+  <testcase name="testIsSpecialChars{String, boolean}[2]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsSpecialChars{String, boolean}[3]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0"/>
+  <testcase name="testIsSpecialChars{String, boolean}[4]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
+  <testcase name="testIsSpecialChars{String, boolean}[5]" classname="hu.unideb.inf.viewtest.FXMLCarsSceneController1Test" time="0.001"/>
 </testsuite>

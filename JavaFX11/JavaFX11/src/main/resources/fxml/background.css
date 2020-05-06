@@ -1,7 +1,7 @@
 
 .root
 {
-    -fx-background-color: linear-gradient(from 0px 0px to 800px 0px,#b0dfe5 0%,#b0dfe5 80%, #95c8d8 20.00%, #95c8d8 100%);
+    -fx-background-color: #99cccc;
 }
 
 
@@ -60,7 +60,7 @@
 
 .tab:selected
 {
-    -fx-background-color:  #b0dfe5;
+    -fx-background-color:  #99cccc;
 }
 
 .text-field
