@@ -250,7 +250,7 @@ import org.hibernate.Transaction;
             return false;
         }else if(IsDig(BrandTextTitle) || IsDig(ColorTextTitle))
         {
-            alert.setContentText("A motor, márka és a szín nem tartalmazhat számjegyet!");
+            alert.setContentText("A márka és a szín nem tartalmazhat számjegyet!");
             return false;
         }else if(IsLet(YearTextTitle) || IsLet(PriceTextTitle))
         {
