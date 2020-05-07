@@ -16,7 +16,7 @@
 
 .button:hover
 {
-    -fx-font-weight: bold;
+    -fx-font-weight: bold; 
     -fx-background-color: #73c2eb;
     -fx-background-radius: 20;
     -fx-border-color: linear-gradient(azure,#2196f3);
